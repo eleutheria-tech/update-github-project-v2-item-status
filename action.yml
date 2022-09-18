@@ -1,11 +1,31 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Get GitHub Project V2 Items'
+description: "This action outputs the items data of your organization's GitHub Project."
+branding:
+  icon: 'layers'
+  color: 'purple'
+
 inputs:
-  milliseconds: # change this
+  gh_token:
+    description: 'GitHub Token with org permission'
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    default: ''
+  project_id:
+    description: "Github Project's number in your organization"
+    required: true
+    default: ''
+  item_ids_json:
+    description: 'ID array of the items in your GitHub Project which you want to update their single select field'
+    required: true
+    default: ''
+  single_select_field_id:
+    description: 'Single select field ID of the items which you want to update'
+    required: true
+    default: ''
+  single_select_field_option_id:
+    description: 'Option ID of the supplied single select field of the items which you want to update'
+    required: true
+    default: ''
+
 runs:
   using: 'node16'
   main: 'dist/index.js'

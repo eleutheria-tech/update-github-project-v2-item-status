@@ -1,3 +1,4 @@
 dist/
 lib/
+!src/**
 node_modules/
