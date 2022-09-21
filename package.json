@@ -1,8 +1,8 @@
 {
-  "name": "typescript-action",
-  "version": "0.0.0",
-  "private": true,
-  "description": "TypeScript template action",
+  "name": "@eleutheria-tech/update-github-project-v2-item-status",
+  "version": "0.0.1",
+  "private": false,
+  "description": "This action updates the single select field value of the items in your organization's GitHub Project.",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/eleutheria-tech/update-github-project-v2-item-status.git"
   },
   "keywords": [
     "actions",
     "node",
     "setup"
   ],
-  "author": "",
+  "author": "June Eleutheria (https://github.com/june21x)",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.9.1",
