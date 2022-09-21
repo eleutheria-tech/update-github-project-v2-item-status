@@ -1,4 +1,4 @@
-name: 'Get GitHub Project V2 Items'
+name: 'Update GitHub Project V2 Item Status'
 description: "This action updates the single select field value of the items in your organization's GitHub Project."
 branding:
   icon: 'layers'
