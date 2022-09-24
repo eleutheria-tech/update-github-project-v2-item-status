@@ -1,6 +1,6 @@
 {
   "name": "@eleutheria-tech/update-github-project-v2-item-status",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "description": "This action updates the single select field value of the items in your organization's GitHub Project.",
   "main": "lib/main.js",
