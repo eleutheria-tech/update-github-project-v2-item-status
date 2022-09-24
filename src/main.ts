@@ -74,6 +74,7 @@ async function run(): Promise<void> {
       const summaryDetails = summary.addHeading(
         `:rocket: Project V2 Items' ${simpleItems[0].ssfName} Updated`
       )
+
       summaryDetails.addRaw(
         `The following item${simpleItems.length > 1 ? 's' : ''} ${
           simpleItems[0].ssfName
@@ -82,7 +83,10 @@ async function run(): Promise<void> {
         } in ${simpleItems[0].projectTitle}`
       )
       summaryDetails.addList(
-        simpleItems.map(item => `[${item.issueOrPRTitle}](${item.url}`)
+        simpleItems.map(
+          item =>
+            `[${item.issueOrPRNumber} ${item.issueOrPRTitle}](${item.url})`
+        )
       )
 
       summaryDetails.write()

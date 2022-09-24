@@ -5,8 +5,18 @@ import {
   ProjectV2ItemFieldSingleSelectValue
 } from '@octokit/graphql-schema'
 
+export const getIssueOrPRFromItem = (
+  item: ProjectV2Item
+): Issue | PullRequest => {
+  return item.content as Issue | PullRequest
+}
+
 export const getIssueOrPRTitleFromItem = (item: ProjectV2Item): string => {
-  return item.content?.title ?? 'No Title'
+  return getIssueOrPRFromItem(item).title
+}
+
+export const getIssueOrPRNumberFromItem = (item: ProjectV2Item): number => {
+  return getIssueOrPRFromItem(item).number
 }
 
 export const getURLFromItem = (item: ProjectV2Item): string => {

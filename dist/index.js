@@ -7,12 +7,19 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getSsfOptionNameFromItem = exports.getSsfNameFromItem = exports.getURLFromItem = exports.getIssueOrPRTitleFromItem = void 0;
+exports.getSsfOptionNameFromItem = exports.getSsfNameFromItem = exports.getURLFromItem = exports.getIssueOrPRNumberFromItem = exports.getIssueOrPRTitleFromItem = exports.getIssueOrPRFromItem = void 0;
+const getIssueOrPRFromItem = (item) => {
+    return item.content;
+};
+exports.getIssueOrPRFromItem = getIssueOrPRFromItem;
 const getIssueOrPRTitleFromItem = (item) => {
-    var _a, _b;
-    return (_b = (_a = item.content) === null || _a === void 0 ? void 0 : _a.title) !== null && _b !== void 0 ? _b : 'No Title';
+    return (0, exports.getIssueOrPRFromItem)(item).title;
 };
 exports.getIssueOrPRTitleFromItem = getIssueOrPRTitleFromItem;
+const getIssueOrPRNumberFromItem = (item) => {
+    return (0, exports.getIssueOrPRFromItem)(item).number;
+};
+exports.getIssueOrPRNumberFromItem = getIssueOrPRNumberFromItem;
 const getURLFromItem = (item) => {
     var _a, _b;
     const isIssue = ((_a = item.content) === null || _a === void 0 ? void 0 : _a.__typename) === 'Issue';
@@ -148,6 +155,7 @@ const execUpdateSsfQuery = (ghToken, projectId, itemId, ssfId, ssfOptionId) => _
         if (!projectV2Item) {
             throw new Error('[Project V2 Item NOT FOUND]');
         }
+        const issueOrPRNumber = (0, getter_1.getIssueOrPRNumberFromItem)(projectV2Item);
         const issueOrPRTitle = (0, getter_1.getIssueOrPRTitleFromItem)(projectV2Item);
         const url = (0, getter_1.getURLFromItem)(projectV2Item);
         const ssfName = (0, getter_1.getSsfNameFromItem)(projectV2Item);
@@ -155,6 +163,7 @@ const execUpdateSsfQuery = (ghToken, projectId, itemId, ssfId, ssfOptionId) => _
         const projectTitle = projectV2Item.project.title;
         const projectURL = projectV2Item.project.url;
         return {
+            issueOrPRNumber,
             issueOrPRTitle,
             url,
             ssfName,
@@ -254,7 +263,7 @@ function run() {
             if (simpleItems && simpleItems.length > 0) {
                 const summaryDetails = core_1.summary.addHeading(`:rocket: Project V2 Items' ${simpleItems[0].ssfName} Updated`);
                 summaryDetails.addRaw(`The following item${simpleItems.length > 1 ? 's' : ''} ${simpleItems[0].ssfName} ${simpleItems.length > 1 ? 'have' : 'has'} been updated to ${simpleItems[0].ssfOptionName} in ${simpleItems[0].projectTitle}`);
-                summaryDetails.addList(simpleItems.map(item => `[${item.issueOrPRTitle}](${item.url}`));
+                summaryDetails.addList(simpleItems.map(item => `[${item.issueOrPRNumber} ${item.issueOrPRTitle}](${item.url})`));
                 summaryDetails.write();
             }
         }

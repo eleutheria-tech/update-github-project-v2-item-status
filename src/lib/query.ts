@@ -3,6 +3,7 @@ import { getOctokit } from '@actions/github'
 import { GraphqlResponseError } from '@octokit/graphql'
 import { Mutation } from '@octokit/graphql-schema'
 import {
+  getIssueOrPRNumberFromItem,
   getIssueOrPRTitleFromItem,
   getSsfNameFromItem,
   getSsfOptionNameFromItem,
@@ -10,6 +11,7 @@ import {
 } from './getter'
 
 export type SimpleItem = {
+  issueOrPRNumber: number
   issueOrPRTitle: string
   url: string
   ssfName: string
@@ -104,6 +106,7 @@ export const execUpdateSsfQuery = async (
       throw new Error('[Project V2 Item NOT FOUND]')
     }
 
+    const issueOrPRNumber = getIssueOrPRNumberFromItem(projectV2Item)
     const issueOrPRTitle = getIssueOrPRTitleFromItem(projectV2Item)
     const url = getURLFromItem(projectV2Item)
     const ssfName = getSsfNameFromItem(projectV2Item)
@@ -112,6 +115,7 @@ export const execUpdateSsfQuery = async (
     const projectURL = projectV2Item.project.url
 
     return {
+      issueOrPRNumber,
       issueOrPRTitle,
       url,
       ssfName,
