@@ -263,7 +263,7 @@ function run() {
             if (simpleItems && simpleItems.length > 0) {
                 const summaryDetails = core_1.summary.addHeading(`:rocket: Project V2 Items' ${simpleItems[0].ssfName} Updated`);
                 summaryDetails.addRaw(`The following item${simpleItems.length > 1 ? 's' : ''} ${simpleItems[0].ssfName} ${simpleItems.length > 1 ? 'have' : 'has'} been updated to ${simpleItems[0].ssfOptionName} in ${simpleItems[0].projectTitle}`);
-                summaryDetails.addList(simpleItems.map(item => `[${item.issueOrPRNumber} ${item.issueOrPRTitle}](${item.url})`));
+                summaryDetails.addList(simpleItems.map(item => `<a href="${item.url}">#${item.issueOrPRNumber}</a> ${item.issueOrPRTitle}`));
                 summaryDetails.write();
             }
         }

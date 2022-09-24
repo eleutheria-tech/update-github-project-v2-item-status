@@ -82,10 +82,11 @@ async function run(): Promise<void> {
           simpleItems[0].ssfOptionName
         } in ${simpleItems[0].projectTitle}`
       )
+
       summaryDetails.addList(
         simpleItems.map(
           item =>
-            `[${item.issueOrPRNumber} ${item.issueOrPRTitle}](${item.url})`
+            `<a href="${item.url}">#${item.issueOrPRNumber}</a> ${item.issueOrPRTitle}`
         )
       )
 
