@@ -69,17 +69,19 @@ async function run(): Promise<void> {
       ssfOptionId
     })
 
-    // [OUTPUT] simple_items_json
+    // Job Summary
     if (simpleItems && simpleItems.length > 0) {
-      summary.addHeading(
+      const summaryDetails = summary.addHeading(
         `:rocket: Project V2 Items' ${simpleItems[0].ssfName} Updated`
       )
-      summary.addRaw(
+      summaryDetails.addRaw(
         `The following items' ${simpleItems[0].ssfName} has been updated to ${simpleItems[0].ssfOptionName} in ${simpleItems[0].projectTitle}`
       )
-      summary.addList(
+      summaryDetails.addList(
         simpleItems.map(item => `[${item.issueOrPRTitle}](${item.url}`)
       )
+
+      summaryDetails.write()
     }
   } catch (error) {
     if (error instanceof Error) setFailed(error.message)
